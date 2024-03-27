@@ -26,4 +26,21 @@ public class Server {
             System.out.println(e);
         }
     }
+
+    public void closeServerSocket(){
+        try{
+            if(serverSocket != null){
+                System.out.println("Server is closing!");
+                this.serverSocket.close();
+            }
+        }catch (IOException e){
+            System.out.println(e);
+        }
+    }
+
+    public static void main(String[] args) throws IOException{
+        ServerSocket serverSocket = new ServerSocket(1234);
+        Server server = new Server(serverSocket);
+        server.startServer();
+    }
 }
