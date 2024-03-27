@@ -18,7 +18,7 @@ public class Client {
             this.username = username;
 
         }catch (IOException e){
-            System.out.println(e);
+            closeEverything(socket, bufferedReader, bufferedWriter);
         }
     }
 
@@ -35,6 +35,8 @@ public class Client {
                 bufferedWriter.newLine();
                 bufferedWriter.flush();
             }
+        }catch (IOException e){
+            closeEverything(socket, bufferedReader, bufferedWriter);
         }
     }
 
@@ -48,11 +50,38 @@ public class Client {
                         msgFromGroupChat = bufferedReader.readLine();
                         System.out.println(msgFromGroupChat);
                     }catch (IOException e){
-                        System.out.println(e);
+                        closeEverything(socket, bufferedReader, bufferedWriter);
                     }
                 }
             }
         }).start();
     }
 
+    public void closeEverything(Socket socket, BufferedReader bufferedReader, BufferedWriter bufferedWriter){
+        try{
+            if (bufferedReader != null){
+                bufferedReader.close();
+            }
+            if(bufferedWriter != null){
+                bufferedWriter.close();
+            }
+            if(socket != null){
+                socket.close();
+            }
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) throws IOException{
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter your username for the group chat: ");
+
+        String username = scanner.nextLine();
+        Socket socket = new Socket("localhost", 1234);
+        Client client = new Client(socket, username);
+        client.listenForMessage();
+        client.sendMessage();
+
+    }
 }
