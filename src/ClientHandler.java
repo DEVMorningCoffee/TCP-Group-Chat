@@ -3,7 +3,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 public class ClientHandler implements Runnable{
-    public static ArrayList<ClientHandler> clientArrayList = new ArrayList<>();
+    public static ArrayList<ClientHandler> clientHandlers = new ArrayList<>();
     private Socket socket;
     private BufferedReader bufferedReader;
     private BufferedWriter bufferedWriter;
@@ -17,11 +17,11 @@ public class ClientHandler implements Runnable{
             // Get socket stream input
             this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             this.clientUsername = bufferedReader.readLine();
-            clientArrayList.add(this);
+            clientHandlers.add(this);
 
 
         }catch (IOException e){
-            System.out.println(e);
+            closeEverything(socket, bufferedReader, bufferedWriter);
         }
     }
 
@@ -33,13 +33,13 @@ public class ClientHandler implements Runnable{
             try{
                 messageFromClient = bufferedReader.readLine();
             }catch (IOException e){
-                System.out.println(e);
+                closeEverything(socket, bufferedReader, bufferedWriter);
             }
         }
     }
 
     public void broadcastMessage(String messageToSend){
-        for(ClientHandler clientHandler: clientArrayList){
+        for(ClientHandler clientHandler: clientHandlers){
             try{
                 if(!clientHandler.clientUsername.equals(clientUsername)){
                     clientHandler.bufferedWriter.write(messageToSend);
@@ -47,8 +47,31 @@ public class ClientHandler implements Runnable{
                     clientHandler.bufferedWriter.flush();
                 }
             }catch (IOException e){
-                System.out.println(e);
+                closeEverything(socket, bufferedReader, bufferedWriter);
             }
+        }
+    }
+
+    public void removeClientHandlers(){
+        clientHandlers.remove(this);
+        broadcastMessage(this.clientUsername + "has  left the chat");
+    }
+
+    public void closeEverything(Socket socket, BufferedReader bufferedReader, BufferedWriter bufferedWriter){
+        removeClientHandlers();
+
+        try{
+            if (bufferedReader != null){
+                bufferedReader.close();
+            }
+            if(bufferedWriter != null){
+                bufferedWriter.close();
+            }
+            if(socket != null){
+                socket.close();
+            }
+        }catch (IOException e){
+            e.printStackTrace();
         }
     }
 }
