@@ -27,5 +27,28 @@ public class ClientHandler implements Runnable{
 
     @Override
     public void run(){
+        String messageFromClient;
+
+        while(socket.isConnected()){
+            try{
+                messageFromClient = bufferedReader.readLine();
+            }catch (IOException e){
+                System.out.println(e);
+            }
+        }
+    }
+
+    public void broadcastMessage(String messageToSend){
+        for(ClientHandler clientHandler: clientArrayList){
+            try{
+                if(!clientHandler.clientUsername.equals(clientUsername)){
+                    clientHandler.bufferedWriter.write(messageToSend);
+                    clientHandler.bufferedWriter.newLine();
+                    clientHandler.bufferedWriter.flush();
+                }
+            }catch (IOException e){
+                System.out.println(e);
+            }
+        }
     }
 }
