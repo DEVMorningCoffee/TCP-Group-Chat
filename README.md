@@ -19,13 +19,13 @@ This is a simple client-server chat application written in Java using sockets. I
 1. Clone the repository to your local machine:
 
    ```bash
-   git clone https://github.com/your-username/chat-application.git
+   git clone https://github.com/your-username/TCP-Group-Chat.git
    ```
 
 2. Navigate to the project directory:
 
    ```bash
-   cd chat-application
+   cd TCP-Group-Chat
    ```
 
 3. Compile the Java files:
