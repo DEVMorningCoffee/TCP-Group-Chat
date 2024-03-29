@@ -1,14 +1,18 @@
 
 
+import Database.Database;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Server {
-    private ServerSocket serverSocket;
+    private final ServerSocket serverSocket;
 
     public Server(ServerSocket serverSocket){
         this.serverSocket = serverSocket;
+        Database database = new Database();
+        database.createNewDatabase("message.db");
     }
 
 
