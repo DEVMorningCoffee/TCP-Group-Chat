@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7dc9ad40-c93c-4c9c-af6e-be68ace86f03" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Database/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TCP Group Chat.iml" beforeDir="false" afterPath="$PROJECT_DIR$/TCP Group Chat.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Database/message" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Database/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/Database.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -72,6 +68,11 @@
     ]
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/Database/sqlite/db" />
+    </key>
+  </component>
   <component name="RunManager" selected="Application.Server">
     <configuration name="Client" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Client" />
@@ -115,7 +116,7 @@
       <updated>1711503989415</updated>
       <workItem from="1711503993000" duration="7305000" />
       <workItem from="1711676715246" duration="3313000" />
-      <workItem from="1711683103384" duration="1686000" />
+      <workItem from="1711683103384" duration="2663000" />
     </task>
     <servers />
   </component>

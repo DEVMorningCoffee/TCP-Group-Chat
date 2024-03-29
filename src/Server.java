@@ -12,7 +12,8 @@ public class Server {
     public Server(ServerSocket serverSocket){
         this.serverSocket = serverSocket;
         Database database = new Database();
-        database.createNewDatabase("message.db");
+        database.createNewDatabase();
+        database.createSchema();
     }
 
 
